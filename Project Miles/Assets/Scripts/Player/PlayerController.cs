@@ -7,11 +7,16 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float rotationSpeed;
     public float jumpSpeed;
+    public float jumpButtonGracePeriod;
 
     private CharacterController characterController;
     private float ySpeed;
     private float originalStepOffset;
-  
+    private float? lastGroundedTime;
+    private float? jumpButtonPressedTime;
+
+    //[SerializeField]
+    private Transform cameraTransform;
 
     void Start()
     {
@@ -26,31 +31,46 @@ public class PlayerController : MonoBehaviour
 
             Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
             float magnitude = Mathf.Clamp01(movementDirection.magnitude) * moveSpeed;
-        //movementDirection.Normalize(); <--- grid movement
 
-            ySpeed += Physics.gravity.y * Time.deltaTime;
-
+        movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
+        ySpeed += Physics.gravity.y * Time.deltaTime;
 
         if (characterController.isGrounded)
         {
-            characterController.stepOffset = originalStepOffset;
-            ySpeed = -0.5f;
+            lastGroundedTime = Time.time;
+        }
 
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                 ySpeed = jumpSpeed;
-            }
-            else
-            {
-                characterController.stepOffset = 0;
-            }
+       if (Input.GetKeyDown(KeyCode.Z))
+        {
+            jumpButtonPressedTime = Time.time;
         }
             
 
+            
+
+                if (Time.time - lastGroundedTime <= jumpButtonGracePeriod)
+            {
+                characterController.stepOffset = originalStepOffset;
+                ySpeed = -0.5f;
+
+                if (Time.time - jumpButtonPressedTime <= jumpButtonGracePeriod)
+                {
+                     ySpeed = jumpSpeed;
+                jumpButtonPressedTime = null;
+                lastGroundedTime = null;
+                }
+                else
+                {
+                    characterController.stepOffset = 0;
+                }
+            }
+
+       
 
 
             Vector3 velocity = movementDirection * magnitude;
             velocity.y = ySpeed;
+
 
         characterController.Move(velocity * Time.deltaTime);
              if (movementDirection != Vector3.zero)
@@ -60,5 +80,16 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
              }
         }
-    
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
 }
