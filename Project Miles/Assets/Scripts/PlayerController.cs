@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController characterController;
     private float ySpeed;
-    //1:17 https://www.youtube.com/watch?v=ynh7b-AUSPE&list=PLx7AKmQhxJFaj0IcdjGJzIq5KwrIfB1m9&index=6&ab_channel=KetraGames
+    private float originalStepOffset;
+  
 
     void Start()
     {
@@ -24,12 +25,29 @@ public class PlayerController : MonoBehaviour
             float verticalInput = Input.GetAxis("Vertical");
 
             Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
-            float magnitude = Mathf.Clamp01(movementDirection.magnitude) * moveSpeed;   
-            //movementDirection.Normalize(); <--- grid movement
+            float magnitude = Mathf.Clamp01(movementDirection.magnitude) * moveSpeed;
+        //movementDirection.Normalize(); <--- grid movement
 
-        //transform.Translate(movementDirection * moveSpeed * Time.deltaTime, Space.World);
-        characterController.SimpleMove(movementDirection * magnitude);
+            ySpeed += Physics.gravity.y * Time.deltaTime;
 
+
+        if (characterController.isGrounded)
+        {
+            ySpeed = -0.5f;
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                 ySpeed = jumpSpeed;
+            }
+        }
+            
+
+
+
+            Vector3 velocity = movementDirection * magnitude;
+            velocity.y = ySpeed;
+
+        characterController.Move(velocity * Time.deltaTime);
              if (movementDirection != Vector3.zero)
              {
                 Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);

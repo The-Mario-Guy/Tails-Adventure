@@ -183,7 +183,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f4b6b42405f5545d6883545a15b0bd02, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -711,6 +711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotationSpeed: 0
+  jumpSpeed: 0
 --- !u!1001 &1315786875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -767,6 +768,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -3168305631593261266, guid: 23c0b31d42b6b403fb33911cee278870, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 89495d00281844e8b94bac26e7ebaecd, type: 2}
     - target: {fileID: -1461304994638716399, guid: 23c0b31d42b6b403fb33911cee278870, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -787,6 +792,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8423763435800578653, guid: 23c0b31d42b6b403fb33911cee278870, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 89495d00281844e8b94bac26e7ebaecd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -797,6 +806,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 23c0b31d42b6b403fb33911cee278870, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1315786881}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 23c0b31d42b6b403fb33911cee278870, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1315786883}
   m_SourcePrefab: {fileID: 100100000, guid: 23c0b31d42b6b403fb33911cee278870, type: 3}
 --- !u!1 &1315786876 stripped
 GameObject:
@@ -817,6 +829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotationSpeed: 720
+  jumpSpeed: 5
 --- !u!143 &1315786881
 CharacterController:
   m_ObjectHideFlags: 0
@@ -843,6 +856,27 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.41, z: 0}
+--- !u!95 &1315786883
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315786876}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c5321560973824a78aa5444ed6d9304b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
