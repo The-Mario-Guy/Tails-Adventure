@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-
+        originalStepOffset = characterController.stepOffset;
     }
         // Update is called once per frame
         void Update()
@@ -33,11 +33,16 @@ public class PlayerController : MonoBehaviour
 
         if (characterController.isGrounded)
         {
+            characterController.stepOffset = originalStepOffset;
             ySpeed = -0.5f;
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
                  ySpeed = jumpSpeed;
+            }
+            else
+            {
+                characterController.stepOffset = 0;
             }
         }
             
