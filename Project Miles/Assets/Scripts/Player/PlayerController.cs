@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private float? jumpButtonPressedTime;
 
     //[SerializeField]
-    private Transform cameraTransform;
+    public Transform cameraTransform;
 
     void Start()
     {
@@ -30,20 +30,25 @@ public class PlayerController : MonoBehaviour
             float verticalInput = Input.GetAxis("Vertical");
 
             Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
-            float magnitude = Mathf.Clamp01(movementDirection.magnitude) * moveSpeed;
+            float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude) /* moveSpeed*/;
+        
+             movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection; //Having errors
+             ySpeed += Physics.gravity.y * Time.deltaTime;
 
-        movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
-        ySpeed += Physics.gravity.y * Time.deltaTime;
 
-        if (characterController.isGrounded)
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            lastGroundedTime = Time.time;
+            inputMagnitude /= 2;
         }
+            if (characterController.isGrounded)
+            {
+                lastGroundedTime = Time.time;
+            }
 
-       if (Input.GetKeyDown(KeyCode.Z))
-        {
-            jumpButtonPressedTime = Time.time;
-        }
+           if (Input.GetKeyDown(KeyCode.Z))
+            {
+                jumpButtonPressedTime = Time.time;
+            }
             
 
             
@@ -68,11 +73,12 @@ public class PlayerController : MonoBehaviour
        
 
 
-            Vector3 velocity = movementDirection * magnitude;
+            Vector3 velocity = movementDirection * moveSpeed;
             velocity.y = ySpeed;
 
 
-        characterController.Move(velocity * Time.deltaTime);
+            characterController.Move(velocity * Time.deltaTime);
+
              if (movementDirection != Vector3.zero)
              {
                 Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
