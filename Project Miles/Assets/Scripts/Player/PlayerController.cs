@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed;
+    public float maximumSpeed;
     public float rotationSpeed;
     public float jumpSpeed;
     public float jumpButtonGracePeriod;
 
+    private Animator animator;
     private CharacterController characterController;
     private float ySpeed;
     private float originalStepOffset;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
     }
@@ -30,16 +32,21 @@ public class PlayerController : MonoBehaviour
             float verticalInput = Input.GetAxis("Vertical");
 
             Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
-            float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude) /* moveSpeed*/;
-        
-             movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection; //Having errors
-             ySpeed += Physics.gravity.y * Time.deltaTime;
-
+        float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
 
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             inputMagnitude /= 2;
         }
+        animator.SetFloat("Input Magnitude", inputMagnitude);
+        float speed = inputMagnitude * maximumSpeed;
+          
+        
+             movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection; //Having errors
+             ySpeed += Physics.gravity.y * Time.deltaTime;
+
+
+       
             if (characterController.isGrounded)
             {
                 lastGroundedTime = Time.time;
@@ -73,7 +80,7 @@ public class PlayerController : MonoBehaviour
        
 
 
-            Vector3 velocity = movementDirection * moveSpeed;
+            Vector3 velocity = movementDirection * maximumSpeed;
             velocity.y = ySpeed;
 
 
