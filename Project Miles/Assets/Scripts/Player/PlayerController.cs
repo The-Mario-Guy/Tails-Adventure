@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed;
     public float jumpSpeed;
     public float jumpButtonGracePeriod;
+    public GameObject jumpModel;
+    public GameObject playerModel;
 
     private Animator animator;
     private CharacterController characterController;
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
+      
     }
         // Update is called once per frame
         void Update()
@@ -50,12 +53,16 @@ public class PlayerController : MonoBehaviour
             if (characterController.isGrounded)
             {
                 lastGroundedTime = Time.time;
-            }
+                jumpModel.GetComponent<Renderer>().enabled = false;
+            playerModel.SetActive(true);
+        }
 
            if (Input.GetKeyDown(KeyCode.Z))
-            {
+           {
                 jumpButtonPressedTime = Time.time;
-            }
+                jumpModel.GetComponent<Renderer>().enabled = true;
+            playerModel.SetActive(false);
+           }   
             
 
             
