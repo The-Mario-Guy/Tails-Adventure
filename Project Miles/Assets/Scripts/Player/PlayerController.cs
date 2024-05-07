@@ -8,6 +8,13 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed;
     public float jumpSpeed;
     public float jumpButtonGracePeriod;
+    public float gravity;
+
+    public float acceleration = 1.0f;
+    public float maxSpeed = 60.0f;
+
+    private float curSpeed = 0.0f;
+
     public GameObject jumpModel;
     public GameObject playerModel;
 
@@ -43,10 +50,10 @@ public class PlayerController : MonoBehaviour
         }
         animator.SetFloat("Input Magnitude", inputMagnitude);
         float speed = inputMagnitude * maximumSpeed;
-          
-        
+
+       
              movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection; //Having errors
-             ySpeed += Physics.gravity.y * Time.deltaTime;
+             ySpeed += Physics.gravity.y * Time.deltaTime * gravity;
 
 
        
@@ -57,7 +64,7 @@ public class PlayerController : MonoBehaviour
             playerModel.SetActive(true);
         }
 
-           if (Input.GetKeyDown(KeyCode.Z))
+           if (Input.GetKeyDown(KeyCode.Space))
            {
                 jumpButtonPressedTime = Time.time;
                 jumpModel.GetComponent<Renderer>().enabled = true;
@@ -87,7 +94,7 @@ public class PlayerController : MonoBehaviour
        
 
 
-            Vector3 velocity = movementDirection * maximumSpeed;
+            Vector3 velocity = movementDirection * maximumSpeed; //speed
             velocity.y = ySpeed;
 
 

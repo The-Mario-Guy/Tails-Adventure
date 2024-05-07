@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.glairedaggers.retrotvfx": {
-      "version": "file:/Users/guillermoavina-gil434/Downloads/RetroTVFX-2.0.0",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.unity.2d.animation": {
       "version": "9.0.4",
       "depth": 1,
