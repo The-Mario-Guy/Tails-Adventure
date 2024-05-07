@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     private float curSpeed = 0.0f;
 
+    public bool isFlying;
+
     public GameObject jumpModel;
     public GameObject playerModel;
 
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
             inputMagnitude /= 2;
         }
         animator.SetFloat("Input Magnitude", inputMagnitude);
+        animator.SetBool("isFlying", isFlying);
         float speed = inputMagnitude * maximumSpeed;
 
        
@@ -59,22 +62,28 @@ public class PlayerController : MonoBehaviour
        
             if (characterController.isGrounded)
             {
+                isFlying = false;
                 lastGroundedTime = Time.time;
                 jumpModel.GetComponent<Renderer>().enabled = false;
-            playerModel.SetActive(true);
+                playerModel.SetActive(true);
         }
 
            if (Input.GetKeyDown(KeyCode.Space))
            {
                 jumpButtonPressedTime = Time.time;
                 jumpModel.GetComponent<Renderer>().enabled = true;
-            playerModel.SetActive(false);
-           }   
-            
+                playerModel.SetActive(false);
+           }
+           if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded)
+           {
+            isFlying = true;
+            StartCoroutine(Flying());
+            }
 
-            
 
-                if (Time.time - lastGroundedTime <= jumpButtonGracePeriod)
+
+
+            if (Time.time - lastGroundedTime <= jumpButtonGracePeriod)
             {
                 characterController.stepOffset = originalStepOffset;
                 ySpeed = -0.5f;
@@ -118,5 +127,13 @@ public class PlayerController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+    private IEnumerator Flying()
+    {
+        jumpModel.GetComponent<Renderer>().enabled = false;
+        playerModel.SetActive(true);
+        gravity = -3.9f;
+        yield return new WaitForSeconds(1f);
+        gravity = 3.9f;
     }
 }
