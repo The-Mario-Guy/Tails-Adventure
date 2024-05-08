@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private float curSpeed = 0.0f;
 
     public bool isFlying;
+    public bool canFly;
 
     public GameObject jumpModel;
     public GameObject playerModel;
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
             if (characterController.isGrounded)
             {
                 isFlying = false;
+                canFly = false;
                 lastGroundedTime = Time.time;
                 jumpModel.GetComponent<Renderer>().enabled = false;
                 playerModel.SetActive(true);
@@ -73,12 +75,13 @@ public class PlayerController : MonoBehaviour
                 jumpButtonPressedTime = Time.time;
                 jumpModel.GetComponent<Renderer>().enabled = true;
                 playerModel.SetActive(false);
+                canFly = true;
            }
-           if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded)
+           if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded && canFly == true)
            {
             isFlying = true;
             StartCoroutine(Flying());
-            }
+           }
 
 
 
@@ -135,5 +138,6 @@ public class PlayerController : MonoBehaviour
         gravity = -3.9f;
         yield return new WaitForSeconds(1f);
         gravity = 3.9f;
+
     }
 }
