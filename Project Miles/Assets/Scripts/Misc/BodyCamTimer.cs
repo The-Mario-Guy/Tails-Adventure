@@ -49,6 +49,6 @@ public class BodyCamTimer : MonoBehaviour
         timeToDisplay += timerType == TimerType.Countdown ? -Time.deltaTime : Time.deltaTime;
 
         System.TimeSpan timeSpan = System.TimeSpan.FromSeconds(timeToDisplay);
-        _timerText.text = timeSpan.ToString(@"mm\:ss\:ff");
+        _timerText.text = timeSpan.ToString(@"m\:ss"); //@"mm\:ss\:ff"
     }
 }

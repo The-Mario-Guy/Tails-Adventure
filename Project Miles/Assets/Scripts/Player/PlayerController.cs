@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
     public float jumpButtonGracePeriod;
     public float gravity;
+    public float flyCount;
 
     public float acceleration = 1.0f;
     public float maxSpeed = 60.0f;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isFlying;
     public bool canFly;
+    public bool isHurt;
 
     public GameObject jumpModel;
     public GameObject playerModel;
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour
         }
         animator.SetFloat("Input Magnitude", inputMagnitude);
         animator.SetBool("isFlying", isFlying);
+        animator.SetBool("isHurt", isHurt);
         float speed = inputMagnitude * maximumSpeed;
 
        
@@ -68,6 +71,7 @@ public class PlayerController : MonoBehaviour
                 lastGroundedTime = Time.time;
                 jumpModel.GetComponent<Renderer>().enabled = false;
                 playerModel.SetActive(true);
+                flyCount = 0;
         }
 
            if (Input.GetKeyDown(KeyCode.Space))
@@ -77,7 +81,7 @@ public class PlayerController : MonoBehaviour
                 playerModel.SetActive(false);
                 canFly = true;
            }
-           if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded && canFly == true)
+           if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded && canFly == true && flyCount <3)
            {
             isFlying = true;
             StartCoroutine(Flying());
@@ -133,11 +137,20 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator Flying()
     {
+        flyCount = flyCount +1;
         jumpModel.GetComponent<Renderer>().enabled = false;
         playerModel.SetActive(true);
-        gravity = -3.9f;
-        yield return new WaitForSeconds(1f);
+        gravity = -1.9f;
+        yield return new WaitForSeconds(0.8f);
         gravity = 3.9f;
+    }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            isHurt = true;
+            Vector3 direction = (transform.position - collision.transform.position).normalized;
+        }
     }
 }

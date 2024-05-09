@@ -4,25 +4,15 @@ using UnityEngine;
 
 public class Rings : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
+        PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
+        if (playerInventory != null)
         {
-            Destroy(gameObject);
+            playerInventory.DiamondCollected();
+            gameObject.SetActive(false);
         }
-            
-
     }
 }
+
