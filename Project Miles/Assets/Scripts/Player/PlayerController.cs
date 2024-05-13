@@ -145,12 +145,22 @@ public class PlayerController : MonoBehaviour
         gravity = 3.9f;
     }
 
-    void OnCollisionEnter(Collision collision)
+    private IEnumerator hurt()
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+       
+        isHurt = true;
+        yield return new WaitForSeconds(1.2f);
+        isHurt = false;
+    }
+
+
+    void OnTriggerEnter(UnityEngine.Collider other)
+    {
+        PlayerInventory PlayerInventory = gameObject.GetComponent<PlayerInventory>();
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            isHurt = true;
-            Vector3 direction = (transform.position - collision.transform.position).normalized;
+           // PlayerInventory.NumberOfDiamonds = 0;
+            StartCoroutine(hurt());
         }
     }
 }
