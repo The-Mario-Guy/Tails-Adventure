@@ -46,7 +46,9 @@ public class PlayerController : MonoBehaviour
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
 
-            Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+      
+
+        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
 
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -59,7 +61,7 @@ public class PlayerController : MonoBehaviour
         float speed = inputMagnitude * maximumSpeed;
 
        
-             movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection; //Having errors
+             movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection; //Camera movement
              ySpeed += Physics.gravity.y * Time.deltaTime * gravity;
 
 
