@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.5537004, g: 0.596636, b: 0.70528036, a: 1}
+  m_IndirectSpecularColor: {r: 0.5531344, g: 0.5962643, b: 0.70518506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 0, y: 2, z: -7}
+  m_FollowOffset: {x: 0, y: 0.51, z: -3.79}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -871,7 +871,7 @@ Transform:
   m_GameObject: {fileID: 301983699}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 6, z: -8}
+  m_LocalPosition: {x: 0, y: 8.18, z: -8}
   m_LocalScale: {x: 409.11444, y: 1, z: 612.0981}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1059,7 +1059,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373872672}
   serializedVersion: 2
-  m_LocalRotation: {x: 1.4752966e-16, y: 0.99033433, z: -0.1387012, w: 1.7506024e-15}
+  m_LocalRotation: {x: 2.7784362e-16, y: 0.99776435, z: -0.0668306, w: 6.483495e-16}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1208,7 +1208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 440522583}
   serializedVersion: 2
-  m_LocalRotation: {x: 4.4149764e-10, y: 0.994719, z: -0.10263582, w: 0.000000004278878}
+  m_LocalRotation: {x: -1.5091211e-11, y: 0.9995335, z: -0.030542748, w: -4.9387083e-10}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1260,9 +1260,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a4c69f7a9d3ea43907b5765229dc85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TextureWarpingFactor: 0.001
+  _TextureWarpingFactor: 0.0001
   _TextureWarpingMode: 1
-  _VertexGridResolution: 20
+  _VertexGridResolution: 50
   _VertexWobbleMode: 0
   _UseRetroVertexLighting: 0
   _RetroLightingNormalFactor: 0
@@ -1328,7 +1328,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0.5
+    Value: 0
     m_SpeedMode: 0
     m_MaxSpeed: 15
     m_AccelTime: 0.2
@@ -1402,7 +1402,7 @@ Transform:
   m_GameObject: {fileID: 481464368}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 233, y: 14.98, z: 499.8}
+  m_LocalPosition: {x: 233, y: 13.49, z: 496.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1511,6 +1511,92 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4097212915808740764, guid: 7f6c413a2a4db42dfa4430eefab5fcbb, type: 3}
   m_PrefabInstance: {fileID: 498855138}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &582969534
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 229.86188
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.525076
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 472.30682
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+      propertyPath: m_Name
+      value: Palm Tree
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 582969536}
+  m_SourcePrefab: {fileID: 100100000, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+--- !u!1 &582969535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c8570ef6266474e3d80186e1345ec455, type: 3}
+  m_PrefabInstance: {fileID: 582969534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &582969536
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582969535}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1f9cb8418ba0b4a53a175cc7fb7ad136, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &623429506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,7 +1832,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.92
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.802082
@@ -1969,7 +2055,7 @@ GameObject:
   - component: {fileID: 839616118}
   - component: {fileID: 839616119}
   m_Layer: 0
-  m_Name: Flowers
+  m_Name: Flower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2457,8 +2543,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000018714619, y: 0.99269336, z: -0.12066459, w: 0.000000015396298}
-  m_LocalPosition: {x: 233, y: 14.98, z: 499.8}
+  m_LocalRotation: {x: -5.8857905e-11, y: 0.9995335, z: -0.030542752, w: -0.0000000019261668}
+  m_LocalPosition: {x: 233, y: 13.49, z: 496.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3003,7 +3089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc34290770854ea38229e201b820170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumSpeed: 20
+  maximumSpeed: 15
   rotationSpeed: 720
   jumpSpeed: 15
   jumpButtonGracePeriod: 0.1
@@ -3245,7 +3331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 0, y: 2, z: -7}
+  m_FollowOffset: {x: 0, y: 0.51, z: -3.79}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -3560,7 +3646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539121340}
   serializedVersion: 2
-  m_LocalRotation: {x: 5.1905025e-10, y: 0.99269336, z: -0.12066458, w: 0.000000004270165}
+  m_LocalRotation: {x: 1.0468088e-10, y: 0.9988149, z: -0.048670724, w: 0.0000000021482487}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4535,7 +4621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 0, y: 2, z: -7}
+  m_FollowOffset: {x: 0, y: 0.51, z: -3.79}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -8076,3 +8162,4 @@ SceneRoots:
   - {fileID: 839616117}
   - {fileID: 1398590944}
   - {fileID: 301983703}
+  - {fileID: 582969534}
