@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public GameObject jumpModel;
     public GameObject playerModel;
 
+    public AudioSource jumpSFX;
+    public AudioSource flySFX;
+
     private Animator animator;
     private CharacterController characterController;
     private float ySpeed;
@@ -35,7 +38,10 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
         animator = GetComponent<Animator>();
+        jumpSFX = GetComponent<AudioSource>();
+        flySFX = GetComponent<AudioSource>();
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
       
@@ -76,15 +82,17 @@ public class PlayerController : MonoBehaviour
                 flyCount = 0;
         }
 
-           if (Input.GetKeyDown(KeyCode.Space))
+           if (Input.GetKeyDown(KeyCode.Space) && canFly == false)
            {
+                jumpSFX.Play(1);
                 jumpButtonPressedTime = Time.time;
                 jumpModel.GetComponent<Renderer>().enabled = true;
                 playerModel.SetActive(false);
                 canFly = true;
            }
-           if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded && canFly == true && flyCount <3)
+            if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded && canFly == true && flyCount <3)
            {
+            
             isFlying = true;
             StartCoroutine(Flying());
            }
@@ -139,12 +147,14 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator Flying()
     {
+       
         flyCount = flyCount +1;
         jumpModel.GetComponent<Renderer>().enabled = false;
         playerModel.SetActive(true);
-        gravity = -1.9f;
-        yield return new WaitForSeconds(0.8f);
+        gravity = -2.1f;
+        yield return new WaitForSeconds(1.1f);
         gravity = 3.9f;
+        
     }
 
     private IEnumerator hurt()
