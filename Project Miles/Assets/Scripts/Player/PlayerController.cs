@@ -11,20 +11,24 @@ public class PlayerController : MonoBehaviour
     public float gravity;
     public float flyCount;
 
-    public float acceleration = 1.0f;
-    public float maxSpeed = 60.0f;
+    //public float acceleration = 1.0f;
+    //public float maxSpeed = 60.0f;
 
-    private float curSpeed = 0.0f;
+    //private float curSpeed = 0.0f;
 
     public bool isFlying;
     public bool canFly;
     public bool isHurt;
+    public bool inWater;
 
     public GameObject jumpModel;
     public GameObject playerModel;
+    public GameObject waterEffect;
 
-    public AudioSource jumpSFX;
-    public AudioSource flySFX;
+    public AudioSource Audio;
+    public AudioClip jumpSFX;
+    public AudioClip flyingSFX;
+ 
 
     private Animator animator;
     private CharacterController characterController;
@@ -40,8 +44,7 @@ public class PlayerController : MonoBehaviour
     {
 
         animator = GetComponent<Animator>();
-        jumpSFX = GetComponent<AudioSource>();
-        flySFX = GetComponent<AudioSource>();
+        Audio = GetComponent<AudioSource>();
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
       
@@ -84,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
            if (Input.GetKeyDown(KeyCode.Space) && canFly == false)
            {
-                jumpSFX.Play(1);
+                 Audio.PlayOneShot(jumpSFX, 1f);
                 jumpButtonPressedTime = Time.time;
                 jumpModel.GetComponent<Renderer>().enabled = true;
                 playerModel.SetActive(false);
@@ -92,7 +95,7 @@ public class PlayerController : MonoBehaviour
            }
             if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded && canFly == true && flyCount <3)
            {
-            
+            Audio.PlayOneShot(flyingSFX);
             isFlying = true;
             StartCoroutine(Flying());
            }
@@ -152,9 +155,20 @@ public class PlayerController : MonoBehaviour
         jumpModel.GetComponent<Renderer>().enabled = false;
         playerModel.SetActive(true);
         gravity = -2.1f;
+        maximumSpeed = 21;
         yield return new WaitForSeconds(1.1f);
         gravity = 3.9f;
-        
+        maximumSpeed = 17;
+    }
+
+    private IEnumerator WaterStuff()
+    {
+
+        inWater = true;
+        maximumSpeed = maximumSpeed / 2;
+        jumpSpeed = jumpSpeed / 2;
+        gravity = gravity - 3.4f;
+        yield return new WaitForSeconds(18f);
     }
 
     private IEnumerator hurt()
@@ -174,5 +188,25 @@ public class PlayerController : MonoBehaviour
            // PlayerInventory.NumberOfDiamonds = 0;
             StartCoroutine(hurt());
         }
+        if (other.gameObject.CompareTag("Water"))
+        {
+            inWater = true;
+            waterEffect.SetActive(true);
+            StartCoroutine(WaterStuff());
+        }
+        
     }
+        private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Water"))
+        {
+            waterEffect.SetActive(false);
+            inWater = false;
+            maximumSpeed = maximumSpeed * 2;
+            jumpSpeed = jumpSpeed * 2;
+            gravity = gravity + 2.9f;
+        }
+    }
+
+
 }

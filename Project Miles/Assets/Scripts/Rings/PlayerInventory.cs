@@ -6,16 +6,21 @@ using UnityEngine.Events;
 
 public class PlayerInventory : MonoBehaviour
 {
-   
+
+    public AudioSource ringSFX;
 
     public int NumberOfDiamonds { get; private set; }
 
     public UnityEvent<PlayerInventory> OnDiamondCollected;
     public UnityEvent<PlayerInventory> OnDiamondLost;
 
-
+    public void Start()
+    {
+        ringSFX = GetComponent<AudioSource>();
+    }
     public void DiamondCollected()
     {
+        ringSFX.Play(1);
         NumberOfDiamonds++;
         OnDiamondCollected.Invoke(this);
     }

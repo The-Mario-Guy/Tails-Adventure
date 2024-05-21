@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5441152560549321610}
   - component: {fileID: 7487933266884830104}
   - component: {fileID: 4846208265552275447}
-  - component: {fileID: -1026077895736957552}
+  - component: {fileID: 5772716221214435977}
   m_Layer: 0
   m_Name: Ring
   m_TagString: Untagged
@@ -156,8 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9771dee6e1bf468ab2e9fb0d1198972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ringSFX: {fileID: -1026077895736957552}
---- !u!82 &-1026077895736957552
+  ringSFX: {fileID: 5772716221214435977}
+--- !u!82 &5772716221214435977
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
